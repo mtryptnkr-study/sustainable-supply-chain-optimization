@@ -95,8 +95,8 @@ Cost–Carbon Pareto Analysis
 Carbon-Price Scenarios
         ↓
 Demand / Capacity Robustness
-```
         ↓
 Freight Disruption Stress Test
         ↓
 Decision-Support Insights
+```
