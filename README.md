@@ -100,3 +100,39 @@ Freight Disruption Stress Test
         ↓
 Decision-Support Insights
 ```
+## Tools
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- PuLP
+- CBC MILP Solver
+- OpenPyXL
+- Jupyter Notebook
+
+## Repository Structure
+├── Sustainable_Supply_Chain_Optimization.ipynb
+├── README.md
+├── requirements.txt
+├── .gitignore
+└── LICENSE
+
+## Limitations
+
+The model is a deterministic and stylized supply-chain network.
+
+It does not currently include:
+
+- stochastic demand distributions,
+- multi-period inventory dynamics,
+- supplier-failure probabilities,
+- endogenous transport-mode selection,
+- nonlinear economies of scale,
+- uncertainty in CO₂-emission factors.
+
+Potential future extensions include robust optimization, stochastic programming and Monte Carlo scenario analysis.
+
+## Author
+
+Maitrey Patankar
+M.Tech Sustainable Engineering, IIT Hyderabad
