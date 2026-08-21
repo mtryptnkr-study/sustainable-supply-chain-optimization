@@ -72,6 +72,24 @@ The extended model identified:
 
 These results should be interpreted as outcomes of the modeled supply-chain system rather than predictions of a specific real-world company network.
 
+### Cost–Carbon Pareto Frontier
+
+The ε-constraint formulation quantifies the economic cost of network decarbonization. The model identifies up to **38.64% CO₂ reduction** relative to the cost-optimal baseline at approximately a **10.04% increase in monthly network cost**.
+
+![Cost–carbon Pareto frontier](cost_carbon_pareto.png)
+
+### Carbon-Price Response
+
+Carbon-price scenarios were evaluated to determine when emissions penalties become large enough to change the economically optimal sourcing and production configuration.
+
+![Carbon-price response](carbon_price_response.png)
+
+### Freight-Disruption Stress Test
+
+A severe logistics disruption was represented by increasing freight costs by **3×** and re-optimizing the network. The resulting optimal configuration increased modeled network cost by approximately **56.15%** and altered the geographic production allocation.
+
+![Freight-disruption response](freight_disruption.png)
+
 ## Scenario Analysis
 
 The project evaluates four major scenario classes:
