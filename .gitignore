@@ -216,3 +216,24 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Local virtual environments
+.venv/
+venv/
+env/
+
+# Local environment variables
+.env
+.env.*
+
+# Temporary research files
+*.tmp
+*.bak

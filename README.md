@@ -1,156 +1,172 @@
-# sustainable-supply-chain-optimization
-Multi-objective MILP framework for cost–carbon supply chain optimization, Pareto analysis and disruption stress testing.
+# Sustainable Multi-Objective Supply Chain Network Optimisation
 
-# Sustainable Multi-Objective Supply Chain Network Optimization
+**A reproducible mixed-integer linear programming (MILP) framework for cost–carbon optimisation, network design, and supply-chain stress testing.**
 
-This project develops a **mixed-integer linear programming (MILP)** framework for a five-country supply chain and extends it beyond cost minimization to study **cost–carbon trade-offs, carbon pricing, demand robustness and freight-disruption resilience**.
+## Overview
 
-The model is implemented in **PuLP** and evaluates production and distribution decisions across the USA, Germany, Japan, Brazil and India.
+This project investigates the design and operation of a stylised five-country supply-chain network spanning the **USA, Germany, Japan, Brazil, and India**.
 
-## Project Objectives
+Using **Python, PuLP, and the CBC MILP solver**, the framework evaluates production-capacity decisions, inter-country distribution flows, economic costs, and CO₂ emissions.
 
-- Formulate a capacitated five-country supply-chain network using MILP.
-- Minimize economic cost while satisfying demand and plant-capacity constraints.
-- Quantify **cost–CO₂ trade-offs** using an ε-constraint Pareto framework.
-- Evaluate the effect of carbon pricing on network configuration.
-- Test robustness to demand growth and freight-cost disruption.
-- Identify service-level feasibility limits under delivery-time constraints.
+The study extends a deterministic cost-minimisation baseline through multi-objective optimisation and scenario-based analysis, examining the trade-offs between economic efficiency, environmental performance, and operational feasibility.
 
-## Network Model
+## Research Objectives
 
-The model includes:
+- Formulate a capacitated supply-chain network as a mixed-integer linear programming problem.
+- Determine cost-minimising production and distribution configurations subject to demand and capacity constraints.
+- Construct a cost–carbon Pareto frontier using the ε-constraint method.
+- Investigate the response of optimal network configurations to carbon pricing.
+- Evaluate feasibility under demand growth and delivery-time restrictions.
+- Assess network sensitivity to severe freight-cost disruptions.
 
-- Facility-capacity decisions
-- Production and inter-country flows
-- Variable manufacturing costs
-- Freight costs
-- Storage and fixed facility costs
-- Regional demand
-- CO₂-emission factors
-- Delivery lead times
+## Mathematical Formulation
 
-The primary economic objective is
+The economic objective is represented by
 
-$$
-\min C =
-\sum_{i,s} F_{is}y_{is}
-+
-\sum_{i,j} c_{ij}x_{ij}
-$$
+\[
+\min C = \sum_{i,s} F_{is}y_{is} + \sum_{i,j} c_{ij}x_{ij}
+\]
 
-where \(y_{is}\) represents plant-capacity choices and \(x_{ij}\) represents inter-country supply flows.
+where \(y_{is}\) denotes facility-capacity selection decisions and \(x_{ij}\) denotes supply flows between countries.
 
-Network emissions are calculated as
+Network CO₂ emissions are represented by
 
-$$
-E =
-\sum_{i,j} e_{ij}x_{ij}.
-$$
+\[
+E = \sum_{i,j} e_{ij}x_{ij}.
+\]
 
-## Multi-Objective Cost–Carbon Analysis
+The model incorporates capacity, demand-fulfilment, and network-feasibility constraints.
 
-An **ε-constraint approach** is used to construct the Pareto frontier.
+For multi-objective analysis, emissions are constrained by a prescribed budget:
 
-Economic cost remains the objective while progressively tighter CO₂ budgets are imposed:
-
-$$
+\[
 E \leq \varepsilon.
-$$
+\]
 
-Each solution therefore represents the **least-cost network configuration achievable at a given emissions level**.
+The ε-constraint approach identifies minimum-cost feasible network configurations across progressively tighter emissions budgets.
 
-## Key Results
+## Key Numerical Results
 
-The extended model identified:
+| Analysis | Modelled outcome |
+|---|---|
+| Cost–carbon optimisation | Up to 38.64% CO₂ reduction at approximately 10.04% higher monthly cost |
+| Delivery-time feasibility | Minimum feasible uniform allowance of approximately 34 days |
+| Demand-growth feasibility | Approximately 2.15% estimated capacity headroom under the existing candidate capacity structure |
+| Freight disruption | Approximately 56.15% increase in optimal network cost under a 3× freight-cost scenario |
+| Carbon pricing | First tested network response at approximately $50/tCO₂ |
 
-- Up to **38.6% modeled CO₂ reduction**
-- At approximately a **10.0% cost premium**
-- A minimum feasible uniform delivery-time allowance of approximately **34 days**
-- Only about **2.15% uniform demand-growth headroom** under the existing candidate capacity structure
-- A **56.2% increase in network cost** under a 3× freight-cost disruption scenario
-- The first tested carbon-price response at approximately **$50/tCO₂**
+These results are specific to the modelled network, input assumptions, and tested scenarios. They should not be interpreted as validated predictions for an operating commercial supply chain.
 
-These results should be interpreted as outcomes of the modeled supply-chain system rather than predictions of a specific real-world company network.
+### Cost–Carbon Pareto Analysis
 
-### Cost–Carbon Pareto Frontier
-
-The ε-constraint formulation quantifies the economic cost of network decarbonization. The model identifies up to **38.64% CO₂ reduction** relative to the cost-optimal baseline at approximately a **10.04% increase in monthly network cost**.
+The ε-constraint method quantifies the economic trade-off associated with progressively reducing network emissions.
 
 ![Cost–carbon Pareto frontier](cost_carbon_pareto.png)
 
 ### Carbon-Price Response
 
-Carbon-price scenarios were evaluated to determine when emissions penalties become large enough to change the economically optimal sourcing and production configuration.
+Carbon-price scenarios investigate how incorporating an emissions penalty into the economic objective can influence optimal sourcing and production decisions.
 
 ![Carbon-price response](carbon_price_response.png)
 
 ### Freight-Disruption Stress Test
 
-A severe logistics disruption was represented by increasing freight costs by **3×** and re-optimizing the network. The resulting optimal configuration increased modeled network cost by approximately **56.15%** and altered the geographic production allocation.
+Freight costs are increased by a factor of three, and the deterministic network is re-optimised to evaluate changes in economic performance and production allocation.
 
 ![Freight-disruption response](freight_disruption.png)
 
-## Scenario Analysis
-
-The project evaluates four major scenario classes:
-
-1. **Cost–carbon Pareto optimization**
-2. **Carbon-price scenarios**
-3. **Demand and capacity robustness**
-4. **Freight-cost disruption stress testing**
-
-## Research Workflow
+## Repository Structure
 
 ```text
-Supply-Chain Data
-        ↓
-MILP Network Formulation
-        ↓
-Cost-Optimal Baseline
-        ↓
-Cost–Carbon Pareto Analysis
-        ↓
-Carbon-Price Scenarios
-        ↓
-Demand / Capacity Robustness
-        ↓
-Freight Disruption Stress Test
-        ↓
-Decision-Support Insights
-```
-## Tools
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- PuLP
-- CBC MILP Solver
-- OpenPyXL
-- Jupyter Notebook
-
-## Repository Structure
-├── Sustainable_Supply_Chain_Optimization.ipynb
+sustainable-supply-chain-optimization/
+├── Code/
+│   └── 01_deterministic_baseline.ipynb
+├── Datasets/
+│   ├── capacity.xlsx
+│   ├── CO2_Emissions.xlsx
+│   ├── Delivery_Deadlines.xlsx
+│   ├── Delivery_LeadTime.xlsx
+│   ├── demand.xlsx
+│   ├── fixed_cost.xlsx
+│   ├── freight_costs.xlsx
+│   ├── Storage_costs.xlsx
+│   └── variable_costs.xlsx
+├── carbon_price_response.png
+├── cost_carbon_pareto.png
+├── freight_disruption.png
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 └── LICENSE
+```
 
-## Limitations
+The repository contains nine Excel input workbooks. The consolidated `Total_Data.xlsx` workbook is retained locally and is not required by the current notebook.
 
-The model is a deterministic and stylized supply-chain network.
+## Installation and Reproduction
 
-It does not currently include:
+**1. Clone the repository**
 
-- stochastic demand distributions,
-- multi-period inventory dynamics,
-- supplier-failure probabilities,
-- endogenous transport-mode selection,
-- nonlinear economies of scale,
-- uncertainty in CO₂-emission factors.
+```bash
+git clone https://github.com/mtryptnkr-study/sustainable-supply-chain-optimization.git
+cd sustainable-supply-chain-optimization
+```
 
-Potential future extensions include robust optimization, stochastic programming and Monte Carlo scenario analysis.
+**2. Install dependencies**
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+**3. Launch Jupyter from the `Code` directory**
+
+```bash
+cd Code
+jupyter notebook 01_deterministic_baseline.ipynb
+```
+
+The notebook uses relative paths of the form `../Datasets/filename.xlsx`. Launching Jupyter from the `Code` directory ensures that these paths resolve correctly.
+
+The model requires a working PuLP-compatible MILP solver, such as CBC.
+
+## Methods and Tools
+
+**Mathematical optimisation:** MILP, ε-constraint method, Pareto analysis, constrained network optimisation.
+
+**Computational tools:** Python, PuLP, CBC, NumPy, Pandas, Matplotlib, OpenPyXL, Jupyter Notebook.
+
+**Scenario investigations:** Carbon pricing, demand-growth feasibility, delivery-time feasibility, and freight-cost disruption.
+
+## Assumptions and Limitations
+
+The framework represents a **deterministic, stylised supply-chain network** rather than an experimentally validated industrial system.
+
+Current limitations include:
+
+- No probabilistic modelling of demand uncertainty.
+- No multi-period inventory dynamics.
+- No explicit supplier-failure probability model.
+- No endogenous selection of transport modes.
+- No nonlinear economies of scale.
+- No uncertainty distributions for CO₂-emission factors.
+
+Demand and freight-cost investigations are deterministic scenario analyses. They should not be interpreted as formal robust or stochastic optimisation.
+
+The model's delivery-deadline inputs and capacity assumptions require careful interpretation when extending the framework to more realistic operating conditions.
+
+## Future Research Directions
+
+Potential extensions include:
+
+- Stochastic programming for uncertain demand and logistics costs.
+- Robust optimisation under bounded parameter uncertainty.
+- Monte Carlo scenario analysis.
+- Sensitivity analysis and systematic uncertainty quantification.
+- Multi-period production and inventory optimisation.
+
+These are proposed extensions and are not part of the completed deterministic baseline.
 
 ## Author
 
-Maitrey Patankar
-M.Tech Sustainable Engineering, IIT Hyderabad
+**Maitrey Patankar**  
+M.Tech Sustainable Engineering  
+Indian Institute of Technology Hyderabad
