@@ -23,25 +23,25 @@ The study extends a deterministic cost-minimisation baseline through multi-objec
 
 The economic objective is represented by
 
-\[
+$$
 \min C = \sum_{i,s} F_{is}y_{is} + \sum_{i,j} c_{ij}x_{ij}
-\]
+$$
 
 where \(y_{is}\) denotes facility-capacity selection decisions and \(x_{ij}\) denotes supply flows between countries.
 
 Network CO₂ emissions are represented by
 
-\[
+$$
 E = \sum_{i,j} e_{ij}x_{ij}.
-\]
+$$
 
 The model incorporates capacity, demand-fulfilment, and network-feasibility constraints.
 
 For multi-objective analysis, emissions are constrained by a prescribed budget:
 
-\[
+$$
 E \leq \varepsilon.
-\]
+$$
 
 The ε-constraint approach identifies minimum-cost feasible network configurations across progressively tighter emissions budgets.
 
